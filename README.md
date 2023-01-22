@@ -95,7 +95,7 @@ Tested OK under Windows.
 ## HISTORY
 This implementation was made for the [PNU project](https://github.com/HubTou/PNU).
 
-I do this kind of analysis which each dataset I have to work with.
+I do this kind of analysis with each dataset I have to work with.
 Last time I did that, I decided that it was about time to fully automate the process, especially as I was working with fields containing multi-lines values...
 
 ## LICENSE
