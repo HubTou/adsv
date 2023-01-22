@@ -1,0 +1,165 @@
+.Dd January 22, 2023
+.Dt ADSV 1
+.Os
+.Sh NAME
+.Nm adsv
+.Nd Analyze delimiter-separated values files
+.Sh SYNOPSIS
+.Nm
+.Op Fl d|--delimiter Ar CHAR
+.Op Fl e|--encoding Ar STRING
+.Op Fl f|--fields Ar LIST
+.Op Fl F|--flatten
+.Op Fl h|--hide Ar INT
+.Op Fl m|--min Ar INT
+.Op Fl M|--max Ar INT
+.Op Fl t|--top Ar INT
+.Op Fl -debug
+.Op Fl -help|-?
+.Op Fl -version
+.Op Fl -
+.Ar filename
+.Op Ar ...
+.Sh DESCRIPTION
+The
+.Nm
+utility analyzes
+.Em delimiter-separated values
+files, such as  Comma-Separated Values .csv or Tab-Separated Values .tsv files,
+and either prints information about their structure and the data in each of their fields,
+or prints a selection of fields in the order requested.
+.Pp
+The information gathered are:
+.Bl -bullet
+.It
+for the file:
+.Bl -bullet
+.It
+the character set encoding
+.It
+the CSV dialect (characters used for delimiting, quoting, escaping or lines terminating. Plus the use or not of double quoting)
+.It
+the presence or not of a headers line
+.It
+the number of lines and fields
+.El
+.It
+for each field:
+.Bl -bullet
+.It
+its number and header
+.It
+the number of distinct values
+.It
+the values type (strings, integers, floating numbers, complex numbers, date and time (whatever their format))
+.It
+the values by descending count
+.It
+the values range by ascending order using the detected type (useful for numbers and dates)
+.El
+.El
+.Pp
+When analyzing a DSV dataset, this allows for a quick and automated way of getting global information about the contents, and explore any oddities...
+.Pp
+There are options:
+.Bl -bullet
+.It
+to control and limit what is printed (
+.Fl h|--hide ,
+.Fl m|--min ,
+.Fl M|--max
+and
+.Fl t|--top
+), 
+.It
+to avoid (or correct) the detection of the character set encoding and delimiter (
+.Fl d|--delimiter ,
+.Fl e|--encoding
+):
+.Bl -bullet
+.It
+the character set detection can take a long time with big files, so if you know that the file is in "Windows-1252" or "utf-8" encoding, it's quicker to say it...
+.El
+.El
+.Pp
+If you use the
+.Fl f|--fields
+option, you'll skip printing the file analysis, and instead print the selected fields in the order requested,
+using the detected delimiting, quoting, escaping and line terminating characters.
+.Pp
+If you encounter multi-lines fields and want to "flatten" them to single lines, you can use the
+.Fl F|--flatten
+option for that.
+.Ss OPTIONS
+.Op Fl d|--delimiter Ar CHAR
+Specify delimiter to be CHAR
+.Pp
+.Op Fl e|--encoding Ar STRING
+Specify charset encoding to be STRING (because detecting encoding can take a long time!)
+.Pp
+.Op Fl f|--fields Ar LIST
+Extract LISTed fields values in given order (ex: 6,2-4,1 with fields numbered from 1)
+.Pp
+.Op Fl F|--flatten
+Make multi-lines fields single line
+.Pp
+.Op Fl h|--hide Ar INT
+Hide the display of distinct values above INT % (default is 20%)
+.Pp
+.Op Fl m|--min Ar INT
+Only display distinct values whose count >= INT (default is to display all distinct values)
+.Pp
+.Op Fl M|--max Ar INT
+Only display INT lines of distinct values (default is to display all distinct values, within the hide limit)
+.Pp
+.Op Fl t|--top Ar INT
+Only display the top/bottom INT lines of values (default is to display the 5 bottom and top lines)
+.Pp
+.Op Fl -debug
+Enable debug mode
+.Pp
+.Op Fl -help|-?
+Print usage and this help message and exit
+.Pp
+.Op Fl -version
+Print version and exit
+.Pp
+.Op Fl -
+Options processing terminator
+.Sh ENVIRONMENT
+The
+.Ev ADSV_DEBUG
+environment variable can also be set to any value to enable debug mode.
+.Sh EXIT STATUS
+.Ex -std adsv
+.Sh SEE ALSO
+.Xr cut 1 ,
+.Xr file 1
+.Sh STANDARDS
+The
+.Nm
+utility is not a standard UNIX command.
+.Pp
+This implementation tries to follow the PEP 8 style guide for Python code.
+.Pp
+The DSV dialects that can be handled are those compatible with
+.Em RFC 4180: Common Format and MIME Type for Comma-Separated Values (CSV) Files .
+.Sh PORTABILITY
+Tested OK under Windows.
+.Sh HISTORY
+This implementation was made for the
+.Lk https://github.com/HubTou/PNU PNU project
+.Pp
+I do this kind of analysis with each dataset I have to work with.
+Last time I did that, I decided that it was about time to fully automate the process,
+especially as I was working with fields containing multi-lines values...
+.Sh LICENSE
+It is available under the 3-clause BSD license.
+.Sh AUTHORS
+.An Hubert Tournier
+.Sh CAVEATS
+Using "Sep=X" as a first line in order to set the X character as a delimiter is not supported.
+.Pp
+There is no support either for potential commented lines inside the data (for example, with
+.Pa /etc/passwd
+files under Unix), but it's not part of any recognized DSV dialect anyway.
