@@ -14,7 +14,7 @@ import libpnu
 from .dsv_library import print_dsv_file_analysis, print_dsv_fields
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: adsv - Analyze delimiter-separated values files v1.0.0 (January 22, 2023) by Hubert Tournier $"
+ID = "@(#) $Id: adsv - Analyze delimiter-separated values files v1.0.1 (January 23, 2023) by Hubert Tournier $"
 
 # Default parameters. Can be overcome by environment variables, then command line options
 parameters = {

@@ -409,6 +409,6 @@ def print_dsv_fields(
 
                     insert_delimiter = True
 
-            print(analysis['lineterminator'], end="")
+            print()
 
     return 0

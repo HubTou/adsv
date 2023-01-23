@@ -7,8 +7,6 @@ pip install [PNU](https://pypi.org/project/PNU/)
 <br>
 pip install [pytnix](https://pypi.org/project/pytnix/)
 
-:warning: This tool is not yet included in the PNU and pytnix distributions
-
 # ADSV(1)
 
 ## NAME
@@ -54,7 +52,7 @@ There are options:
 * to avoid (or correct) the detection of the character set encoding and delimiter (*-d|--delimiter*, *-e|--encoding*):
   * the character set detection can take a long time with big files, so if you know that the file is in "Windows-1252" or "utf-8" encoding, it's quicker to say it...
 
-If you use the *-f|--fields* option, you'll skip printing the file analysis, and instead print the selected fields in the order requested, using the detected delimiting, quoting, escaping and line terminating characters.
+If you use the *-f|--fields* option, you'll skip printing the file analysis, and instead print the selected fields in the order requested, using the detected delimiting, quoting and escaping characters.
 
 If you encounter multi-lines fields and want to "flatten" them to single lines, you can use the *-F|--flatten* option for that.
 
