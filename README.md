@@ -1,5 +1,6 @@
 # Installation
-Depending on if you want only this tool, the full set of PNU tools, or PNU plus a selection of additional third-parties tools, use one of these commands:
+Once you have installed [Python](https://www.python.org/downloads/) and its packages manager [pip](https://pip.pypa.io/en/stable/installation/),
+depending on if you want only this tool, the full set of PNU tools, or PNU plus a selection of additional third-parties tools, use one of these commands:
 
 pip install [pnu-adsv](https://pypi.org/project/pnu-adsv/)
 <br>
