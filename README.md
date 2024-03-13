@@ -13,6 +13,8 @@ pip install [pytnix](https://pypi.org/project/pytnix/)
 ## NAME
 adsv - Analyze delimiter-separated values files
 
+[![Servier Inspired](https://raw.githubusercontent.com/RomualdRousseau/ServierHub/main/badges/inspired.svg)](https://servier.com/)
+
 ## SYNOPSIS
 **adsv**
 \[-d|--delimiter CHAR\]
